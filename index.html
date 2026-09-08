@@ -167,6 +167,48 @@
       color: var(--text-muted);
     }
 
+    .search-wrap {
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    #site-search {
+      width: 100%;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #site-search::placeholder {
+      color: var(--text-muted);
+    }
+
+    #site-search:focus {
+      border-color: var(--accent);
+    }
+
+    #search-status {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+    }
+
+    .search-hidden {
+      display: none !important;
+    }
+
+    mark {
+      background-color: var(--accent);
+      color: var(--bg);
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+
     footer {
       text-align: center;
       padding-top: 2rem;
@@ -210,12 +252,18 @@
         <span>•</span>
         <span>Wentworth Point, NSW</span>
         <span>•</span>
-        <a href=""https://github.com/jaysung-ai" target="_blank">GitHub</a>
+        <a href="https://github.com/jaysung-ai" target="_blank">GitHub</a>
       </div>
     </header>
 
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <input type="text" id="site-search" placeholder="Search this page (e.g. 'Python', 'sushi', 'UNSW')" />
+      <div id="search-status"></div>
+    </div>
+
     <!-- ABOUT SECTION -->
-    <section>
+    <section id="about-section">
       <h2>About Me</h2>
       <p class="about-text">
         Motivated Bachelor of Engineering (Honours) Software student at UNSW with a strong technical foundation,
@@ -226,7 +274,7 @@
     </section>
 
     <!-- SKILLS SECTION -->
-    <section>
+    <section id="skills-section">
       <h2>Technical Skills</h2>
       <div class="skills-grid">
         <span class="skill-tag">Python</span>
@@ -238,7 +286,7 @@
     </section>
 
     <!-- STRENGTHS SECTION -->
-    <section>
+    <section id="strengths-section">
       <h2>Core Strengths</h2>
       <div class="strengths-grid">
         <div class="strength-card">
@@ -261,7 +309,7 @@
     </section>
 
     <!-- EXPERIENCE SECTION -->
-    <section>
+    <section id="experience-section">
       <h2>Experience</h2>
 
       <div class="card">
@@ -293,7 +341,7 @@
     </section>
 
     <!-- LEADERSHIP & COMMUNITY SECTION -->
-    <section>
+    <section id="leadership-section">
       <h2>Leadership & Community</h2>
 
       <div class="card">
@@ -324,7 +372,7 @@
     </section>
 
     <!-- EDUCATION SECTION -->
-    <section>
+    <section id="education-section">
       <h2>Education</h2>
 
       <div class="card">
@@ -353,6 +401,84 @@
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      const input = document.getElementById('site-search');
+      const status = document.getElementById('search-status');
+      const sections = Array.from(document.querySelectorAll('section'));
+
+      // Cache each section's original HTML so highlights can be cleanly removed.
+      const originals = sections.map(function (section) {
+        return section.innerHTML;
+      });
+
+      function clearHighlights() {
+        sections.forEach(function (section, i) {
+          section.innerHTML = originals[i];
+        });
+      }
+
+      function highlightText(node, regex) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent;
+          if (regex.test(text)) {
+            const span = document.createElement('span');
+            span.innerHTML = text.replace(regex, '<mark>$1</mark>');
+            node.parentNode.replaceChild(span, node);
+          }
+        } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'MARK') {
+          Array.from(node.childNodes).forEach(function (child) {
+            highlightText(child, regex);
+          });
+        }
+      }
+
+      function runSearch() {
+        const query = input.value.trim();
+        clearHighlights();
+
+        if (!query) {
+          sections.forEach(function (section) {
+            section.classList.remove('search-hidden');
+          });
+          status.textContent = '';
+          return;
+        }
+
+        const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp('(' + escaped + ')', 'gi');
+        let matchCount = 0;
+        let firstMatch = null;
+
+        sections.forEach(function (section) {
+          const text = section.textContent.toLowerCase();
+          const matches = text.includes(query.toLowerCase());
+          if (matches) {
+            section.classList.remove('search-hidden');
+            highlightText(section, regex);
+            matchCount++;
+            if (!firstMatch) firstMatch = section;
+          } else {
+            section.classList.add('search-hidden');
+          }
+        });
+
+        if (matchCount === 0) {
+          status.textContent = 'No matches found.';
+        } else {
+          status.textContent = matchCount + ' section' + (matchCount === 1 ? '' : 's') + ' matched.';
+          firstMatch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      let debounce;
+      input.addEventListener('input', function () {
+        clearTimeout(debounce);
+        debounce = setTimeout(runSearch, 150);
+      });
+    })();
+  </script>
 
 </body>
 </html>
