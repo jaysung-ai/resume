@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jay Sung - Portfolio & Resume</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a, .contact-links span {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .contact-links a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      margin: 2.5rem 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.75rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .card-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .card-sub {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      list-style-position: outside;
+      color: var(--text-muted);
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+    }
+
+    .about-text {
+      color: var(--text-muted);
+    }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .strength-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+
+    .strength-card h3 {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .strength-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .strengths-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .card-date {
+        margin-top: 0.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER SECTION -->
+    <header>
+      <h1>Jay Sung</h1>
+      <p class="subtitle">Software Engineering Student</p>
+      <div class="contact-links">
+        <a href="mailto:jaysung1123@gmail.com">jaysung1123@gmail.com</a>
+        <span>•</span>
+        <span>0491 159 063</span>
+        <span>•</span>
+        <span>Wentworth Point, NSW</span>
+      </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section>
+      <h2>About Me</h2>
+      <p class="about-text">
+        Motivated Bachelor of Engineering (Honours) Software student at UNSW with a strong technical foundation,
+        practical team leadership experience, and dual fluency in English and Korean. Recognised for clear
+        communication, adaptability under pressure, and a structured approach to problem-solving. Eligible to
+        work in Australia.
+      </p>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">JavaScript / HTML / CSS</span>
+        <span class="skill-tag">Bash / Shell</span>
+        <span class="skill-tag">Git & GitHub</span>
+      </div>
+    </section>
+
+    <!-- STRENGTHS SECTION -->
+    <section>
+      <h2>Core Strengths</h2>
+      <div class="strengths-grid">
+        <div class="strength-card">
+          <h3>Problem Solving</h3>
+          <p>Logical, efficient approach to resolving complex challenges.</p>
+        </div>
+        <div class="strength-card">
+          <h3>Adaptability & Initiative</h3>
+          <p>Fast learner who adapts quickly to new systems and workflows.</p>
+        </div>
+        <div class="strength-card">
+          <h3>Communication & Teamwork</h3>
+          <p>Proven success training staff and collaborating across teams.</p>
+        </div>
+        <div class="strength-card">
+          <h3>Continuous Growth</h3>
+          <p>Eager to apply analytical skills, accept feedback, and drive goals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section>
+      <h2>Experience</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Yume Sushi</span>
+          <span class="card-date">Sep 2024 - Current</span>
+        </div>
+        <div class="card-sub">Hall Staff & Kitchen Hand</div>
+        <ul>
+          <li>Trained and onboarded 7 new staff members on operating procedures, safety standards, and service quality.</li>
+          <li>Took ownership of specific menu preparation tasks requiring precision and consistency under time constraints.</li>
+          <li>Adapted quickly to shifting operational demands, covering hall and kitchen roles at short notice.</li>
+          <li>Maintained oversight of station-level standards and hygiene protocols.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">SushiN Japanese Restaurant</span>
+          <span class="card-date">Jan 2020 - Dec 2023</span>
+        </div>
+        <div class="card-sub">Hall Staff & Kitchen Hand</div>
+        <ul>
+          <li>Coordinated across kitchen and front-of-house teams under time pressure during high-volume periods.</li>
+          <li>Managed customer-facing responsibilities including order taking and POS transactions.</li>
+          <li>Balanced concurrent responsibilities across food prep, table service, and sanitation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & COMMUNITY SECTION -->
+    <section>
+      <h2>Leadership & Community</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">ANZYC Youth Convention - Audio Engineer</span>
+          <span class="card-date">Jan 2026</span>
+        </div>
+        <div class="card-sub">General Assembly of Korean Presbyterian Churches</div>
+        <ul>
+          <li>Operated and monitored sound equipment during live sessions, presentations, and performances.</li>
+          <li>Coordinated with organisers, speakers, and performers on audio requirements.</li>
+          <li>Troubleshot audio and equipment issues under time-sensitive, live-event conditions.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">International Community Service - Indonesia Mission Trip</span>
+          <span class="card-date">Jan 2026 & Aug 2026</span>
+        </div>
+        <div class="card-sub">Hanaro Presbyterian Church (Bali & Malang)</div>
+        <ul>
+          <li>Taught English across multiple middle and high schools, adapting lessons to different age groups and proficiency levels.</li>
+          <li>Supported children at a local orphanage through education, recreation, and group activities.</li>
+          <li>Coordinated festivals and sports events to engage local children and communities.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section>
+      <h2>Education</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Bachelor of Engineering (Honours) - Software</span>
+          <span class="card-date">Started 2024</span>
+        </div>
+        <div class="card-sub">University of New South Wales</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Higher School Certificate (HSC)</span>
+          <span class="card-date">2018 - 2023</span>
+        </div>
+        <div class="card-sub">Girraween High School</div>
+        <ul>
+          <li>Leadership: Peer Support Leader, SRC Representative.</li>
+          <li>Extra-curricular: Stage Band, School Representative for Basketball & Volleyball.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Jay Sung</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
